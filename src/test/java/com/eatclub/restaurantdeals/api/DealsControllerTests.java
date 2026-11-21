@@ -71,4 +71,13 @@ class DealsControllerTests {
         mockMvc.perform(get("/api/deals"))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    void returnsPeakTimeWithoutRequestParameters() throws Exception {
+        mockMvc.perform(get("/api/deals/peak-time"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.peakTimeStart").value("18:00"))
+                .andExpect(jsonPath("$.peakTimeEnd").value("21:00"))
+                .andExpect(jsonPath("$.length()").value(2));
+    }
 }

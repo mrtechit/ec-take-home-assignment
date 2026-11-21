@@ -22,6 +22,15 @@ Example request:
 curl --get 'http://localhost:8080/api/deals' --data-urlencode 'timeOfDay=3:00pm'
 ```
 
+The peak-time endpoint takes no parameters and returns the continuous window with
+the highest number of simultaneously active deals:
+
+```shell
+curl 'http://localhost:8080/api/deals/peak-time'
+```
+
+For the bundled data, the response is `{"peakTimeStart":"18:00","peakTimeEnd":"21:00"}`.
+
 ## Requirements
 
 - Java 17 or newer
