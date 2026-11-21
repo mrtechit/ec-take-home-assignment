@@ -72,7 +72,7 @@ public class ActiveDealsService {
 
     private static LocalTime parseRequestedTime(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("timeOfDay must not be blank");
+            throw new InvalidTimeOfDayException("timeOfDay must not be blank");
         }
 
         String normalizedValue = value.trim();
@@ -82,7 +82,7 @@ public class ActiveDealsService {
             try {
                 return LocalTime.parse(normalizedValue, TWENTY_FOUR_HOUR_FORMAT);
             } catch (DateTimeParseException twentyFourHourException) {
-                throw new IllegalArgumentException(
+                throw new InvalidTimeOfDayException(
                         "timeOfDay must be in h:mma or H:mm format: " + value,
                         twentyFourHourException);
             }
