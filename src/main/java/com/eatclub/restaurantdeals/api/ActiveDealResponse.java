@@ -1,9 +1,12 @@
 package com.eatclub.restaurantdeals.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public record ActiveDealResponse(
         String restaurantObjectId,
         String restaurantName,
         String restaurantAddress1,
+        @JsonProperty("restarantSuburb")
         String restaurantSuburb,
         String restaurantOpen,
         String restaurantClose,

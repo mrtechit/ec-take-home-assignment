@@ -25,8 +25,22 @@ class DealsControllerTests {
                 .andExpect(jsonPath("$.deals.length()").value(5))
                 .andExpect(jsonPath("$.deals[0].restaurantName").value("Masala Kitchen"))
                 .andExpect(jsonPath("$.deals[0].restaurantOpen").value("3:00pm"))
-                .andExpect(jsonPath("$.deals[0].restaurantSuburb").value("Lower East"))
+                .andExpect(jsonPath("$.deals[0].restarantSuburb").value("Lower East"))
                 .andExpect(jsonPath("$.deals[0].dealObjectId").value("DEA567C5-0000-3C03-FF00-E3B24909BE00"));
+    }
+
+    @Test
+    void returnsDealsForSixPm() throws Exception {
+        mockMvc.perform(get("/api/deals").param("timeOfDay", "6:00pm"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.deals.length()").value(9));
+    }
+
+    @Test
+    void returnsDealsForNinePm() throws Exception {
+        mockMvc.perform(get("/api/deals").param("timeOfDay", "9:00pm"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.deals.length()").value(4));
     }
 
     @Test
